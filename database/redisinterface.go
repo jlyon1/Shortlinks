@@ -35,15 +35,15 @@ func (r *Redis) Disconnect() bool{
 }
 
 func (r *Redis) Find(key string) string{
-  return ""
+  val, _ := r.Client.Get(key).Result()
+  return val
 }
 
-func (r *Redis) AddString(key string, val string) bool{
-  return false
-}
 
-func (r *Redis) AddInt(key string, value int) bool{
-  return false
+func (r *Redis) Set(key string, value interface{}) bool{
+  r.Client.Set(key,value,0)
+
+  return true
 }
 
 func (r *Redis) Delete(key string) bool{
