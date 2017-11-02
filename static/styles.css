@@ -1,0 +1,95 @@
+body{
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  color:black;
+  background-color: white;
+
+}
+
+.header{
+  width: 25%;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 100px;
+  font-size: 36px;
+  float: center;
+  padding-bottom: 30px;
+
+}
+input{
+  width: 100%;
+}
+
+.info_item{
+  user-select: none;
+  cursor: pointer;
+  border: solid;
+  border-color: #34495e;
+  border-width: 1px;
+  width: 50%;
+  margin-top: 40px;
+  margin: 0 auto;
+  float: center;
+  background-color: white;
+  height: 100px;
+  border-radius: 5px;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+}
+.info_item:hover{
+  -webkit-box-shadow: 3px 3px 1px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 1px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 1px 1px #ccc;
+}
+
+.text{
+  float:left;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 60%;
+}
+
+img{
+  height: 100px;
+  width: auto;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  float: left;
+}
+.projectHeader{
+  float:left;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-top: 10px;
+  width: 60%;
+}
+
+.message_center{
+  position: relative;
+
+}
+
+.message_body{
+    font-size: 30px;;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.titlebar{
+  color: white;
+  height: 34px;
+  background-color: #34495e;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 25px;
+  line-height: 34px;
+  vertical-align: center;
+
+}

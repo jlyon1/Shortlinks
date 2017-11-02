@@ -2,6 +2,8 @@ package database
 
 import (
   "gopkg.in/redis.v5"
+  "encoding/json"
+  "fmt"
 )
 
 type Redis struct{
@@ -36,13 +38,15 @@ func (r *Redis) Disconnect() bool{
 
 func (r *Redis) Find(key string) string{
   val, _ := r.Client.Get(key).Result()
+  //fmt.Printf("val " + val)
   return val
 }
 
 
 func (r *Redis) Set(key string, value interface{}) bool{
-  r.Client.Set(key,value,0)
-
+  b,_ := json.Marshal(value)
+  r.Client.Set(key,b,0)
+  fmt.Printf("%v",b)
   return true
 }
 
