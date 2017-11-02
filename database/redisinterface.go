@@ -3,7 +3,7 @@ package database
 import (
   "gopkg.in/redis.v5"
   "encoding/json"
-  "fmt"
+  //"fmt"
 )
 
 type Redis struct{
@@ -46,7 +46,7 @@ func (r *Redis) Find(key string) string{
 func (r *Redis) Set(key string, value interface{}) bool{
   b,_ := json.Marshal(value)
   r.Client.Set(key,b,0)
-  fmt.Printf("%v",b)
+  //fmt.Printf("%v",b)
   return true
 }
 

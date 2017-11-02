@@ -9,7 +9,7 @@ import (
 	//"encoding/json"
 )
 
-type Article struct{
+type Article struct {
 	Title string `json:"title"`
 	Link  string `json:"link"`
 	Text  string `json:"text"`
@@ -37,12 +37,11 @@ func main() {
 
 	// Public
 	r.HandleFunc("/", api.IndexHandler).Methods("GET")
-	r.HandleFunc("/add", api.AddIndexHandler).Methods("GET")
 	r.HandleFunc("/add", api.SetHandler).Methods("POST")
-	r.HandleFunc("/s/{val}",api.ShortLink).Methods("GET")
+	r.HandleFunc("/s/{val}", api.ShortLink).Methods("GET")
 
-	r.HandleFunc("/get/",api.GetHandler).Methods("GET")
-  r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
+	r.HandleFunc("/get/", api.GetHandler).Methods("GET")
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
 	http.ListenAndServe("0.0.0.0:8081", r)
 
 }

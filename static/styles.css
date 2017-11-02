@@ -18,6 +18,20 @@ body{
 }
 input{
   width: 100%;
+  margin: 5px;
+  height: 40px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+button{
+}
+
+.ai{
+  margin-top: 5px;
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .info_item{
@@ -80,9 +94,9 @@ img{
 }
 
 .titlebar{
-  color: white;
+  color: grey;
   height: 34px;
-  background-color: #34495e;
+  background-color: #f0f0f0;
   width: 100%;
   position: absolute;
   top: 0;
