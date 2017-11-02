@@ -19,6 +19,7 @@ type Article struct {
 	Text  string `json:"text"`
 	Image string `json:"image"`
 	Id    int    `json:"id"`
+	Count int    `json:"count"`
 }
 type Input struct {
 	Title    string `json:"title"`
@@ -31,7 +32,10 @@ type Input struct {
 func (api *API) ShortLink(w http.ResponseWriter, r *http.Request) {
 	var a Article
 	val := mux.Vars(r)["val"]
-	json.Unmarshal([]byte(api.Database.Find(val)), &a)
+	ar := api.Database.Find(val)
+	json.Unmarshal([]byte(ar), &a)
+	a.Count = a.Count + 1;
+	api.Database.Set(val, a)
 	http.Redirect(w, r, a.Link, 301)
 
 }
