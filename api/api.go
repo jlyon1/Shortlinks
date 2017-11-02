@@ -6,6 +6,7 @@ import (
   "encoding/json"
   "strconv"
   // "fmt"
+  "github.com/gorilla/mux"
 )
 
 type API struct{
@@ -17,6 +18,14 @@ type Article struct{
 	Link  string `json:"link"`
 	Text  string `json:"text"`
 	Image string `json:"image"`
+}
+
+func (api *API) ShortLink(w http.ResponseWriter, r *http.Request){
+  var a Article
+  val := mux.Vars(r)["val"];
+  json.Unmarshal([]byte(api.Database.Find(val)), &a)
+  http.Redirect(w, r, a.Link, 301)
+
 }
 
 func (api *API) SetHandler(w http.ResponseWriter, r *http.Request){
