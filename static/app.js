@@ -46,12 +46,13 @@ var articleIn = Vue.component('article-input',{
   <input v-model="sendVal.text" placeholder="text"></input>
   <input v-model="sendVal.image" placeholder="image"></input>
   <input v-model="sendVal.link" placeholder="link"></input>
+  <input v-model="sendVal.password" placeholder="password" type="password"></input>
   <button @click=submit>Send it</button>
 
   </div>`,
   data (){
     return {
-      sendVal: {title: "", text: "", image: "", link: ""}
+      sendVal: {title: "", text: "", image: "", link: "",password:""}
     }
   },
   methods:{
@@ -64,6 +65,7 @@ var articleIn = Vue.component('article-input',{
       this.sendVal.text = "";
       this.sendVal.image ="";
       this.sendVal.link = "";
+      this.sendVal.password = "";
     }
   }
 

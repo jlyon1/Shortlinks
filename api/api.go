@@ -19,6 +19,13 @@ type Article struct{
 	Text  string `json:"text"`
 	Image string `json:"image"`
 }
+type Input struct{
+	Title string `json:"title"`
+	Link  string `json:"link"`
+	Text  string `json:"text"`
+	Image string `json:"image"`
+  Password string `json:"password"`
+}
 
 func (api *API) ShortLink(w http.ResponseWriter, r *http.Request){
   var a Article
@@ -29,14 +36,21 @@ func (api *API) ShortLink(w http.ResponseWriter, r *http.Request){
 }
 
 func (api *API) SetHandler(w http.ResponseWriter, r *http.Request){
+  var b Input
   var a Article
   article := json.NewDecoder(r.Body)
-  article.Decode(&a)
+  article.Decode(&b)
   count,_ := strconv.Atoi(api.Database.Find("count"))
   count += 1;
   val := strconv.Itoa(count)
-	api.Database.Set(val,a)
-  api.Database.Set("count",count)
+  a.Title = b.Title
+  a.Link = b.Link
+  a.Text = b.Text
+  a.Image = b.Image
+  if b.Password == api.Database.Find("password"){
+    api.Database.Set(val,a)
+    api.Database.Set("count",count)
+  }
 
 }
 
