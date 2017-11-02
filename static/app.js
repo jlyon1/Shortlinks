@@ -1,5 +1,23 @@
 var refresh = true;
 
+var cre = Vue.component('create-button',{
+  template: `
+  <div style="width:100%;text-align:center;">
+  <button style="text-align:center;" @click="toggle">Create</button>
+  <div v-if='show'><article-input></article-input></div>
+  </div>`,
+  data () {
+    return{
+      show: false,
+    }
+  },
+  methods:{
+    toggle: function(){
+      this.show = !this.show;
+    },
+  }
+})
+
 var header = Vue.component('info-item',{
   props: ['val','text','link','img','myId'],
   template:`<div style="display:none;" v-on:click="redir" class="info_item">
@@ -22,15 +40,29 @@ var header = Vue.component('info-item',{
   }
 
 })
+
+
 var bdy = Vue.component('item-area',{
   template:`<div>
-  <info-item v-for="article in articles" :link="article.link" :img="article.image" :val="article.title" :text="article.text" :myId ="article.id"></info-item>
+  <div style="width:50%; margin: 0 auto;">
+  <input v-model="search" placeholder="search"></input>
+  </div>
+  <info-item v-for="article in filteredList" :link="article.link" :img="article.image" :val="article.title" :text="article.text" :myId ="article.id"></info-item>
   </div>`,
   data (){
     return {
-      articles: [{title: "hey",text: "also hey",link: "asdf",img: ""}]
+      articles: [{title: "hey",text: "also hey",link: "asdf",img: ""}],
+      search: "",
     }
   },
+  computed: {
+    filteredList() {
+      return this.articles.filter(article => {
+        return article.title.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
+  },
+
   mounted (){
     let el = this
     $.get("get/",function(data){
@@ -94,7 +126,7 @@ var header = Vue.component('header-area',{
 
 var titlebar = Vue.component('title-bar',{
   props: ['msg'],
-  template:`<div class="titlebar" style="cursor:pointer;" v-on:click="redir">{{msg}}</div>`,
+  template:`<div class="titlebar">{{msg}}</div>`,
   data (){
     return {
     }
@@ -110,6 +142,7 @@ var titlebar = Vue.component('title-bar',{
 var App = new Vue({
   el: '#app-vue',
   data: {
-  }
+  },
+
 
 });

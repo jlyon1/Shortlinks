@@ -7,13 +7,13 @@ body{
 }
 
 .header{
-  width: 25%;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
   padding-top: 100px;
-  font-size: 36px;
+  font-size: 30px;
   float: center;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 
 }
 input{
@@ -26,7 +26,9 @@ input{
 }
 button{
 }
-
+a{
+  text-decoration: none;
+}
 .ai{
   margin-top: 5px;
   width: 40%;
