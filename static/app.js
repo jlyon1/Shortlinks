@@ -44,7 +44,7 @@ var header = Vue.component('info-item',{
 
 var bdy = Vue.component('item-area',{
   template:`<div>
-  <div style="width:50%; margin: 0 auto;">
+  <div style="width:50%; margin: 0 auto; padding-bottom: 20px;">
   <input v-model="search" placeholder="search"></input>
   </div>
   <info-item v-for="article in filteredList" :clicks="article.count" :link="'/s/' + article.id" :img="article.image" :val="article.title" :text="article.text" :myId ="article.id"></info-item>
@@ -124,20 +124,17 @@ var header = Vue.component('header-area',{
 })
 
 
-var titlebar = Vue.component('title-bar',{
-  props: ['msg'],
-  template:`<div class="titlebar">{{msg}}</div>`,
+Vue.component("titlebar",{
+  template: `<div v-bind:style=titleStyle><p v-bind:style=paragraphStyle>{{titleText}}</p></div>`,
   data (){
-    return {
-    }
-  },
-  methods: {
-    redir: function(){
-      location.href="https://jlyon.org";
+    return{
+      titleStyle: {position:"absolute",backgroundColor:"#eee",height:"34px",width:"auto",top:"1",left:"0",right:"0"},
+      paragraphStyle: {float: "left",height:"34px",lineHeight:"34px",verticalAlign:"center",paddingLeft:"30px",margin:"0"},
+      titleText: "Joseph Lyon"
     }
   }
 
-})
+});
 
 var App = new Vue({
   el: '#app-vue',
