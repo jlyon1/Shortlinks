@@ -44,7 +44,7 @@ var header = Vue.component('info-item',{
 
 var bdy = Vue.component('item-area',{
   template:`<div>
-  <div style="width:50%; margin: 0 auto; padding-bottom: 20px;">
+  <div style="width:20%; margin: 0 auto; padding-bottom: 20px;">
   <input v-model="search" placeholder="search"></input>
   </div>
   <info-item v-for="article in filteredList" :clicks="article.count" :link="'/s/' + article.id" :img="article.image" :val="article.title" :text="article.text" :myId ="article.id"></info-item>
