@@ -51,10 +51,23 @@ a{
   transition: 0.3s;
 }
 .info_item:hover{
-
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+.srx{
+  width:20%;
+}
 
+@media only screen and (max-width: 480px) {
+  .info_item{
+
+    width: 75%;
+
+  }
+  .srx{
+    width:60%;
+  }
+
+}
 .text{
   float:left;
   padding-left: 10px;
