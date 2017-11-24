@@ -23,7 +23,7 @@ func connectDB(db database.DB) {
 
 func main() {
 	test := &database.Redis{}
-	test.IP = "172.17.0.2"
+	test.IP = "localhost"
 	test.Port = "6379"
 	test.DB = 0
 	test.Password = ""

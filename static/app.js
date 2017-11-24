@@ -3,12 +3,11 @@ var refresh = true;
 var cre = Vue.component('create-button',{
   template: `
   <div style="width:100%;text-align:center;">
-  <button style="text-align:center;" @click="toggle">Create</button>
   <div v-if='show'><article-input></article-input></div>
   </div>`,
   data () {
     return{
-      show: false,
+      show: true,
     }
   },
   methods:{
@@ -84,21 +83,27 @@ var bdy = Vue.component('item-area',{
 var articleIn = Vue.component('article-input',{
   props: ['msg'],
   template:`<div class ="ai">
-  <input v-model="sendVal.title" placeholder="title"></input>
   <input v-model="sendVal.link" placeholder="link"></input>
-  <input v-model="sendVal.password" placeholder="password" type="password"></input>
   <button @click=submit>Add</button>
-
+  <br><br>
+  <a v-bind:href="link" style="font-size:20px;">{{data}}</a>
   </div>`,
   data (){
     return {
-      sendVal: {title: "", text: "", image: "", link: "",password:""}
+      sendVal: {title: "", text: "", image: "", link: "https://",password:""},
+      data: "",
+      link:""
     }
   },
   methods:{
     submit: function(){
-      console.log("asdf");
+      let el = this;
+      this.sendVal.title = this.sendVal.link;
       $.post("/add",JSON.stringify(this.sendVal),function(data){
+        el.data = "/s/";
+        el.data += data;
+        el.link = "/s/";
+        el.link += data;
 
       })
       refresh = true;

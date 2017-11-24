@@ -57,10 +57,11 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 	a.Link = b.Link
 	a.Text = b.Text
 	a.Image = b.Image
-	if b.Password == api.Database.Find("password") {
-		api.Database.Set(val, a)
-		api.Database.Set("count", count)
-	}
+
+	api.Database.Set(val, a)
+	api.Database.Set("count", count)
+	WriteJSON(w, count)
+
 
 }
 
