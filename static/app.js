@@ -19,7 +19,7 @@ var cre = Vue.component('create-button',{
 
 var header = Vue.component('info-item',{
   props: ['val','text','link','img','myId','clicks'],
-  template:`<div style="cursor: pointer;" v-on:click="redir" class="box">
+  template:`<div style="cursor: pointer; overflow: hide;" v-on:click="redir" class="box">
   <div class="media-content">
   <div>{{val}}</div>
   <div>{{text}}</div>
