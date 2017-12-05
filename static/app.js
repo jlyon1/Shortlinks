@@ -19,11 +19,12 @@ var cre = Vue.component('create-button',{
 
 var header = Vue.component('info-item',{
   props: ['val','text','link','img','myId','clicks'],
-  template:`<div style="display:none;" v-on:click="redir" class="info_item">
-  <img v-if="img != ''" :src="img"></img>
-  <span class="projectHeader">{{val}}</span>
-  <div style="color:gray; float:right; font-size:12px;padding-top:5px; padding-right:5px;">Uses: {{clicks}} Link: /s/{{myId}}</div>
-  <span class="text">{{text}}</span>
+  template:`<div style="cursor: pointer;" v-on:click="redir" class="box">
+  <div class="media-content">
+  <div>{{val}}</div>
+  <div>{{text}}</div>
+  <div>Uses: {{clicks}} Link: /s/{{myId}}</div>
+  </div>
   </div>`,
   data (){
     return {
@@ -46,7 +47,9 @@ var bdy = Vue.component('item-area',{
   <div class="srx" style="margin: 0 auto; padding-bottom: 20px;">
   <input v-model="search" placeholder="search"></input>
   </div>
-  <info-item v-for="article in filteredList" :clicks="article.count" :link="'/s/' + article.id" :img="article.image" :val="article.title" :text="article.text" :myId ="article.id"></info-item>
+  <div class="container">
+    <info-item v-for="article in filteredList" :clicks="article.count" :link="'/s/' + article.id" :img="article.image" :val="article.title" :text="article.text" :myId ="article.id"></info-item>
+  </div>
   </div>`,
   data (){
     return {
