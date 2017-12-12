@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-	"fmt"
+	// "fmt"
 	"github.com/gorilla/mux"
 )
 
@@ -42,7 +42,7 @@ func (api *API) ShortLink(w http.ResponseWriter, r *http.Request) {
 	api.Database.Set(val, a)
 	if(val[len(val)-1:] == "+"){
 		w.Header().Set("Content-Type", "text/html")
-		w.Write([]byte(a.Link))
+		WriteJSON(w,a)
 
 	}else{
 		http.Redirect(w, r, a.Link, 301)
