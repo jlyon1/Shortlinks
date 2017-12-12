@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-	// "fmt"
+	"fmt"
 	"github.com/gorilla/mux"
 )
 
@@ -32,11 +32,22 @@ type Input struct {
 func (api *API) ShortLink(w http.ResponseWriter, r *http.Request) {
 	var a Article
 	val := mux.Vars(r)["val"]
+
 	ar := api.Database.Find(val)
+	if(val[len(val)-1:] == "+"){
+		ar = api.Database.Find(val[:len(val)-1])
+	}
 	json.Unmarshal([]byte(ar), &a)
 	a.Count = a.Count + 1;
 	api.Database.Set(val, a)
-	http.Redirect(w, r, a.Link, 301)
+	if(val[len(val)-1:] == "+"){
+		w.Header().Set("Content-Type", "text/html")
+		w.Write([]byte(a.Link))
+
+	}else{
+		http.Redirect(w, r, a.Link, 301)
+
+	}
 
 }
 
