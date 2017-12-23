@@ -21,7 +21,7 @@ var header = Vue.component('info-item',{
   props: ['val','text','link','img','myId','clicks'],
   template:`<div style="cursor: pointer; overflow: hide;" v-on:click="redir" class="box">
   <div class="media-content">
-  <div>{{val}}</div>
+  <div>{{val.substr(0,35)}}...</div>
   <div>{{text}}</div>
   <div>Uses: {{clicks}} Link: /s/{{myId}}</div>
   </div>
@@ -37,6 +37,7 @@ var header = Vue.component('info-item',{
   },
   mounted(){
     $(".info_item").fadeIn("slow");
+
   }
 
 })
