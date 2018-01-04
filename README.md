@@ -1,4 +1,4 @@
-# Shortlinks [![Project State](https://status.jlyon.org/badge/jlyon1/docs)](https://status.jlyon.org/jlyon1/docs)
+# Shortlinks [![Project State](https://burndown.io/badge/jlyon1/docs)](https://burndown.io/jlyon1/docs)
 
 Live site: https://s.jlyon.org
 
