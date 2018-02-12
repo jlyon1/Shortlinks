@@ -37,6 +37,7 @@ func main() {
 
 	// Public
 	r.HandleFunc("/", api.IndexHandler).Methods("GET")
+	r.HandleFunc("/{val}", api.ShortLink).Methods("GET")
 	r.HandleFunc("/add", api.SetHandler).Methods("POST")
 	r.HandleFunc("/add", api.AddIndexHandler).Methods("GET")
 
