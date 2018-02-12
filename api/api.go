@@ -77,10 +77,10 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 
 	if(oth == ""){
 		api.Database.Set(val, a)
+		api.Database.Set("count", count)
 	}else{
 		api.Database.Set(oth, a)
 	}
-	api.Database.Set("count", count)
 	WriteJSON(w, count)
 
 
