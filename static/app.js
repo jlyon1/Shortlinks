@@ -88,6 +88,7 @@ var articleIn = Vue.component('article-input',{
   props: ['msg'],
   template:`<div class ="ai">
   <input v-model="sendVal.link" placeholder="link"></input>
+  <input v-model="sendVal.text" placeholder="🤖"></input>
   <button @click=submit>Add</button>
   <br><br>
   <a v-bind:href="link" style="font-size:20px;">{{data}}</a>

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-	// "fmt"
+	"fmt"
 	"github.com/gorilla/mux"
 )
 
@@ -32,7 +32,7 @@ type Input struct {
 func (api *API) ShortLink(w http.ResponseWriter, r *http.Request) {
 	var a Article
 	val := mux.Vars(r)["val"]
-
+	fmt.Println(val)
 	ar := api.Database.Find(val)
 	if(val[len(val)-1:] == "+"){
 		ar = api.Database.Find(val[:len(val)-1])
@@ -45,7 +45,7 @@ func (api *API) ShortLink(w http.ResponseWriter, r *http.Request) {
 		WriteJSON(w,a)
 
 	}else{
-		http.Redirect(w, r, a.Link, 301)
+		http.Redirect(w, r, a.Link, 302)
 
 	}
 
@@ -56,8 +56,14 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 	var a Article
 	article := json.NewDecoder(r.Body)
 	article.Decode(&b)
-	count, _ := strconv.Atoi(api.Database.Find("count"))
-	count += 1
+	count := 0
+	oth := ""
+	if(b.Text != ""){
+		oth = b.Text
+	}else{
+		count, _ := strconv.Atoi(api.Database.Find("count"))
+		count += 1
+	}
 	val := strconv.Itoa(count)
 
 	if b.Title == "" {
@@ -69,7 +75,11 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 	a.Text = b.Text
 	a.Image = b.Image
 
-	api.Database.Set(val, a)
+	if(oth == ""){
+		api.Database.Set(val, a)
+	}else{
+		api.Database.Set(oth, a)
+	}
 	api.Database.Set("count", count)
 	WriteJSON(w, count)
 
