@@ -39,7 +39,7 @@ func main() {
 	r.HandleFunc("/", api.IndexHandler).Methods("GET")
 	r.HandleFunc("/{val}", api.ShortLink).Methods("GET")
 	r.HandleFunc("/add", api.SetHandler).Methods("POST")
-	r.HandleFunc("/add", api.AddIndexHandler).Methods("GET")
+	r.HandleFunc("/addl", api.AddIndexHandler).Methods("GET")
 
 	r.HandleFunc("/s/{val}", api.ShortLink).Methods("GET")
 
