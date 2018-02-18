@@ -19,7 +19,7 @@ type Article struct {
 	Link  string `json:"link"`
 	Text  string `json:"text"`
 	Image string `json:"image"`
-	Id    int    `json:"id"`
+	Id    string    `json:"id"`
 	Count int    `json:"count"`
 }
 type Input struct {
@@ -101,14 +101,14 @@ func (api *API) GetHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf(s)
 		val := s
 		json.Unmarshal([]byte(api.Database.Find(val)), &a)
-		a.Id = -1
+		a.Id = val
 		articles = append(articles, a)
 	}
 	for i := 1; i <= count; i++ {
 		var a Article
 		val := strconv.Itoa(i)
 		json.Unmarshal([]byte(api.Database.Find(val)), &a)
-		a.Id = i
+		a.Id = strconv.Itoa(i)
 		articles = append(articles, a)
 	}
 
