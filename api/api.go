@@ -98,6 +98,7 @@ func (api *API) GetHandler(w http.ResponseWriter, r *http.Request) {
 	a := strings.Split(emojval,";")
 	for _,s := range a{
 		var a Article
+		fmt.Printf(s)
 		val := s
 		json.Unmarshal([]byte(api.Database.Find(val)), &a)
 		a.Id = -1
