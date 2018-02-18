@@ -29,7 +29,7 @@ export default {
   },
   mounted: function(){
     let el = this
-    fetch("http://127.0.0.1:8081/get/").then(res => {
+    fetch("get/").then(res => {
      return (res.json())
     }).then(ret =>{
     el.links = ret;
