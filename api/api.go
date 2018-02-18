@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"fmt"
+	"strings"
 	"github.com/gorilla/mux"
 )
 
@@ -80,6 +81,10 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 		api.Database.Set("count", count)
 	}else{
 		api.Database.Set(oth, a)
+		emoval := api.Database.Find("emoj")
+		emoval += ";"
+		emoval += oth
+		api.Database.Set("emoj",emoval)
 	}
 	WriteJSON(w, count)
 
@@ -89,6 +94,15 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 func (api *API) GetHandler(w http.ResponseWriter, r *http.Request) {
 	var articles []Article
 	count, _ := strconv.Atoi(api.Database.Find("count"))
+	emojval := api.Database.Find("emoj")
+	a := strings.Split(emojval,";")
+	for _,s := range a{
+		var a Article
+		val := s
+		json.Unmarshal([]byte(api.Database.Find(val)), &a)
+		a.Id = -1
+		articles = append(articles, a)
+	}
 	for i := 1; i <= count; i++ {
 		var a Article
 		val := strconv.Itoa(i)
