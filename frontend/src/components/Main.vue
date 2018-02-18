@@ -6,14 +6,22 @@
     </div>
   </div>
   <div class = "section">
-    {{links}}
+    <div class="container">
+  <div v-for="i in Math.ceil(links.length/3)" class="tile is-ancestor">
+    <LinkCard v-for="(link,j) in links.slice((i - 1) * 3, i * 3)" :num=i+j :clicks="link.count" :link="link.id" :img="link.image" :val="link.title" :text="link.text" :myId ="link.id"></LinkCard>
+  </div>
+  </div>
   </div>
   </div>
 </template>
 
 <script>
+import LinkCard from '@/components/LinkCard'
+
+
 export default {
   name: 'Main',
+  components: {LinkCard},
   data () {
     return {
       links: []
@@ -21,7 +29,11 @@ export default {
   },
   mounted: function(){
     let el = this
-    
+    fetch("http://127.0.0.1:8081/get/").then(res => {
+     return (res.json())
+    }).then(ret =>{
+    el.links = ret;
+    })
   }
 }
 </script>
