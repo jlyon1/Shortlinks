@@ -109,6 +109,8 @@ func (api *API) AddIndexHandler(w http.ResponseWriter, r *http.Request) {
 
 func WriteJSON(w http.ResponseWriter, data interface{}) error {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	b, err := json.MarshalIndent(data, "", " ")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
