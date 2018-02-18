@@ -82,6 +82,7 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 	}else{
 		api.Database.Set(oth, a)
 		emoval := api.Database.Find("emoj")
+		emoval = strings.Replace(emoval,"\\\"","",-1)
 		emoval += ";"
 		emoval += oth
 		api.Database.Set("emoj",emoval)
@@ -95,6 +96,9 @@ func (api *API) GetHandler(w http.ResponseWriter, r *http.Request) {
 	var articles []Article
 	count, _ := strconv.Atoi(api.Database.Find("count"))
 	emojval := api.Database.Find("emoj")
+	emojval = strings.Replace(emojval,"\"","",-1)
+	emojval = strings.Replace(emojval,"\\","",-1)
+
 	a := strings.Split(emojval,";")
 	for _,s := range a{
 		var a Article
