@@ -62,13 +62,14 @@ func (api *API) SetHandler(w http.ResponseWriter, r *http.Request) {
 	if(b.Text != ""){
 		oth = b.Text
 	}else{
-		count, _ := strconv.Atoi(api.Database.Find("count"))
+		count, _ = strconv.Atoi(api.Database.Find("count"))
 		count += 1
 	}
 	if(api.Database.Find(oth) != ""){
 		WriteJSON(w,"bad");
 		return;
 	}
+	fmt.Printf("Count %v", count)
 	val := strconv.Itoa(count)
 
 	if b.Title == "" {
