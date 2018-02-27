@@ -1,9 +1,9 @@
 <template>
   <div>
-  <div class="section" style="backgroundColor:#111">
-    <div class="subtitle has-text-white">
-      Shortlinks | <a href="https://jlyon.org" style="color:white; textDecoration:none;">jlyon.org</a>
-    </div>
+  <div class="section level" style="backgroundColor:#111">
+    <span class="subtitle has-text-white ">
+      Shortlinks | <a href="https://jlyon.org" style="color:white; textDecoration:none;">jlyon.org</a> | <a href="https://s.jlyon.org/add/" style="color:#3498db; textDecoration:none;">Create</a>
+    </span>
   </div>
   <div class = "section">
     <div class="container">
